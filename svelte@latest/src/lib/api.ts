@@ -7,40 +7,116 @@ export async function fetchProducts() {
   return response.json();
 }
 
-export async function fetchCategories() {
-  const response = await fetch(`${API_URL}/categories`);
-  if (!response.ok) throw new Error('Error fetching categories');
+export async function fetchProductById(id: number) {
+  const response = await fetch(`${API_URL}/products/${id}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch product ${id}`);
+  }
   return response.json();
 }
 
-export async function createProduct(data: any) {
+
+export async function fetchCategories() {
+  const response = await fetch(`${API_URL}/categories`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch categories');
+  }
+  return response.json();
+}
+
+export async function createProduct(product: any) {
   const response = await fetch(`${API_URL}/products`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(product),
   });
-  if (!response.ok) throw new Error('Error creating product');
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to create product');
+  }
   return response.json();
 }
 
-export async function updateProduct(id: number, data: any) {
+export async function updateProduct(id: number, product: any) {
   const response = await fetch(`${API_URL}/products/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(product),
   });
-  if (!response.ok) throw new Error('Error updating product');
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to update product');
+  }
   return response.json();
 }
+
 
 export async function deleteProduct(id: number) {
   const response = await fetch(`${API_URL}/products/${id}`, {
     method: 'DELETE',
   });
-  if (!response.ok) throw new Error('Error deleting product');
+
+  if (!response.ok) {
+    throw new Error('Failed to delete product');
+  }
+}
+
+
+
+// Add these to your existing $lib/api.ts
+
+export async function createCategory(category: any) {
+  const response = await fetch(`${API_URL}/categories`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(category),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to create category');
+  }
+  return response.json();
+}
+
+export async function updateCategory(id: number, category: any) {
+  const response = await fetch(`${API_URL}/categories/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(category),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to update category');
+  }
+  return response.json();
+}
+
+export async function deleteCategory(id: number) {
+  const response = await fetch(`${API_URL}/categories/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to delete category');
+  }
+}
+
+export async function fetchCategoryById(id: number) {
+  const response = await fetch(`${API_URL}/categories/${id}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch category ${id}`);
+  }
   return response.json();
 }
