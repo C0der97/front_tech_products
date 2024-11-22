@@ -1,5 +1,8 @@
 // src/lib/api.ts
-const API_URL = 'http://54.167.147.75/api';
+const API_URL = 'https://5x2ubxdvc9.execute-api.us-east-1.amazonaws.com/api';
+const API_CAT_URL = 'https://5x2ubxdvc9.execute-api.us-east-1.amazonaws.com//api';
+
+
 
 export async function fetchProducts() {
   const response = await fetch(`${API_URL}/products`);
@@ -72,7 +75,7 @@ export async function deleteProduct(id: number) {
 // Add these to your existing $lib/api.ts
 
 export async function createCategory(category: any) {
-  const response = await fetch(`${API_URL}/categories`, {
+  const response = await fetch(`${API_CAT_URL}/categories`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -88,7 +91,7 @@ export async function createCategory(category: any) {
 }
 
 export async function updateCategory(id: number, category: any) {
-  const response = await fetch(`${API_URL}/categories/${id}`, {
+  const response = await fetch(`${API_CAT_URL}/categories/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -104,7 +107,7 @@ export async function updateCategory(id: number, category: any) {
 }
 
 export async function deleteCategory(id: number) {
-  const response = await fetch(`${API_URL}/categories/${id}`, {
+  const response = await fetch(`${API_CAT_URL}/categories/${id}`, {
     method: 'DELETE',
   });
 
@@ -114,7 +117,7 @@ export async function deleteCategory(id: number) {
 }
 
 export async function fetchCategoryById(id: number) {
-  const response = await fetch(`${API_URL}/categories/${id}`);
+  const response = await fetch(`${API_CAT_URL}/categories/${id}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch category ${id}`);
   }
