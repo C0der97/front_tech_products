@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npx playwright test --coverage
+        run: npx c8 npx playwright test
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v4
