@@ -1,6 +1,6 @@
 // src/lib/api.ts
-const API_URL = 'https://5x2ubxdvc9.execute-api.us-east-1.amazonaws.com/api';
-const API_CAT_URL = 'https://5x2ubxdvc9.execute-api.us-east-1.amazonaws.com//api';
+const API_URL = 'https://catalogo_productos_tech.test/api';
+const API_CAT_URL = 'https://catalogo_productos_tech.test/api';
 
 
 
